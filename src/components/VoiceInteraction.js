@@ -80,8 +80,8 @@ const VoiceInteraction = () => {
   };
 
   const connectWebSockets = async () => {
-    transcriptWsRef.current = new WebSocket('ws://localhost:5000/ws/transcribe');
-    speechWsRef.current = new WebSocket('ws://localhost:5000/ws/speech');
+    transcriptWsRef.current = new WebSocket('wss://auriter-backend.onrender.com/ws/transcribe');
+    speechWsRef.current = new WebSocket('wss://auriter-backend.onrender.com/ws/speech');
     
     transcriptWsRef.current.onmessage = async (event) => {
       const data = JSON.parse(event.data);
@@ -91,7 +91,7 @@ const VoiceInteraction = () => {
         resetSilenceTimeout();
       }
     };
-
+  
     speechWsRef.current.onmessage = async (event) => {
       if (event.data instanceof Blob) {
         const arrayBuffer = await event.data.arrayBuffer();
@@ -112,7 +112,7 @@ const VoiceInteraction = () => {
         }
       }
     };
-
+  
     return new Promise((resolve) => {
       const checkConnections = () => {
         if (transcriptWsRef.current?.readyState === WebSocket.OPEN &&
@@ -125,6 +125,7 @@ const VoiceInteraction = () => {
       checkConnections();
     });
   };
+  
 
   const initializeAudioRecording = async () => {
     try {
@@ -168,7 +169,7 @@ const VoiceInteraction = () => {
       setLoading(true);
       setError(null);
 
-      const chatResponse = await fetch('http://localhost:5000/api/chat/message', {
+      const chatResponse = await fetch('https://auriter-backend.onrender.com/api/chat/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

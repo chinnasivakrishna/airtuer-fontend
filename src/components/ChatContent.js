@@ -87,7 +87,7 @@ const ChatContent = () => {
       const formData = new FormData();
       formData.append('audio', audioBlob, 'recording.webm');
 
-      const response = await fetch('http://localhost:5000/api/chat/transcribe', {
+      const response = await fetch('https://auriter-backend.onrender.com/api/chat/transcribe', {
         method: 'POST',
         body: formData,
         credentials: 'include'
@@ -116,7 +116,7 @@ const ChatContent = () => {
   const fetchChatHistory = async () => {
     try {
       setError(null);
-      const response = await fetch(`http://localhost:5000/api/chat/history/${userId}`, {
+      const response = await fetch(`https://auriter-backend.onrender.com/api/chat/history/${userId}`, {
         credentials: 'include'
       });
       
@@ -177,7 +177,7 @@ const ChatContent = () => {
         audioRef.current = null;
       }
   
-      const response = await fetch('http://localhost:5000/api/chat/synthesize', {
+      const response = await fetch('https://auriter-backend.onrender.com/api/chat/synthesize', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -247,7 +247,7 @@ const ChatContent = () => {
     setInput('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat/message', {
+      const response = await fetch('https://auriter-backend.onrender.com/api/chat/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
