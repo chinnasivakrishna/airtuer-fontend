@@ -1,18 +1,15 @@
+// RecruiterMenu.js
 import React from 'react';
-import { Home, Users, Phone, Video, BookOpen, MessageSquare, FileText,UserPlus } from 'lucide-react';
+import { Home, Briefcase, Users, FileText, MessageSquare, Settings } from 'lucide-react';
 
-const SidebarMenu = ({ isExpanded, currentPath, handleNavigate }) => {
+const RecruiterMenu = ({ isExpanded, currentPath, handleNavigate }) => {
   const menuItems = [
     { icon: Home, label: 'Dashboard', path: '/dashboard' },
-    { icon: Users, label: 'Jobs', path: '/jobs' },
-    { icon: FileText, label: 'Jobs Applied', path: '/jobs-applied' },
-    { icon: FileText, label: 'Resume Analyzer', path: '/resume-analyzer' },
-    { icon: UserPlus, label: 'Profile Setup', path: '/profile-setup' },
-    { icon: Phone, label: 'AI Telephonic', path: '/ai-telephonic' },
-    { icon: Video, label: 'AI Video f2f', path: '/ai-video' },
-    { icon: Video, label: 'Expert Video f2f', path: '/expert-video' },
-    { icon: BookOpen, label: 'Courses', path: '/courses' },
-    { icon: MessageSquare, label: 'Chat', path: '/chat' }
+    { icon: Briefcase, label: 'Post Jobs', path: '/post-jobs' },
+    { icon: FileText, label: 'My Job Listings', path: '/my-listings' },
+    { icon: Users, label: 'Candidates', path: '/candidates' },
+    { icon: MessageSquare, label: 'Messages', path: '/messages' },
+    { icon: Settings, label: 'Settings', path: '/settings' }
   ];
 
   return (
@@ -47,4 +44,4 @@ const SidebarMenu = ({ isExpanded, currentPath, handleNavigate }) => {
   );
 };
 
-export default SidebarMenu;
+export default RecruiterMenu;

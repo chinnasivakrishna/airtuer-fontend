@@ -20,6 +20,11 @@ const SummaryAnalysis = ({ analysis }) => {
   // Create a formatted feedback array that includes all scores
   const formattedFeedback = [
     {
+      category: 'Overall Match',
+      score: analysis.overallScore || analysis.matchPercentage,
+      message: 'Overall match with job requirements'
+    },
+    {
       category: 'Skills Match',
       score: analysis.skillsScore,
       message: analysis.feedback?.find(f => f.category === 'Skills Match')?.message || 
@@ -53,11 +58,11 @@ const SummaryAnalysis = ({ analysis }) => {
       {/* Overall Score */}
       <div className="text-center mb-8">
         <div className="text-4xl font-bold mb-2">
-          <span className={getScoreColor(analysis.score)}>
-            {analysis.score}%
+          <span className={getScoreColor(analysis.totalScore || analysis.score || analysis.overallScore)}>
+            {(analysis.totalScore || analysis.score || analysis.overallScore).toFixed(1)}%
           </span>
         </div>
-        <p className="text-gray-600">Overall Match Score</p>
+        <p className="text-gray-600">Total Score</p>
       </div>
 
       {/* Score Categories */}
@@ -71,7 +76,7 @@ const SummaryAnalysis = ({ analysis }) => {
               <span className="font-medium text-gray-700">{item.category}</span>
               <div className="flex items-center gap-2">
                 <span className={`font-bold ${getScoreColor(item.score)}`}>
-                  {item.score}%
+                  {item.score?.toFixed(1)}%
                 </span>
                 {getScoreIcon(item.score)}
               </div>
